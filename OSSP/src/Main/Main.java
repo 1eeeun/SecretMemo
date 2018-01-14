@@ -4,14 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Encrypt.Encryptor;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.awt.event.ActionEvent;
 
 public class Main extends JFrame {
@@ -53,6 +59,23 @@ public class Main extends JFrame {
 		contentPane.add(btEncrypt);
 
 		btDecrypt = new JButton("Decrypt");
+		btDecrypt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser fs = new JFileChooser(new File("C:\\"));
+				fs.setDialogTitle("File Load");
+				int result = fs.showOpenDialog(null);
+				if(result == JFileChooser.APPROVE_OPTION) {
+					File file = fs.getSelectedFile();
+					try {
+						BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
+
+						//ÆÄÀÏÀ» ·ÎµåÇÏ¸é DecryptorÀÇ tf¿¡ ¶ß°Ô²û ¼öÁ¤
+					}catch(Exception e1) {
+						JOptionPane.showMessageDialog(null, e1.getMessage());;
+					}
+				}
+			}
+		});
 		btDecrypt.setFont(new Font("³ª´®°íµñ ExtraBold", Font.PLAIN, 20));
 		btDecrypt.setBounds(118, 141, 182, 27);
 		contentPane.add(btDecrypt);
