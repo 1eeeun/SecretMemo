@@ -20,6 +20,7 @@ public class Main extends JFrame {
 	private JButton btEncrypt, btDecrypt;
 	//프레임 생성
 	public Main() {
+		this.setTitle("Secret Memo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setBounds(100, 100, 450, 300);
