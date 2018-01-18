@@ -24,6 +24,7 @@ public class Main extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btEncrypt, btDecrypt;
+	private JFileChooser fc;
 	//프레임 생성
 	public Main() {
 		this.setTitle("Secret Memo");
@@ -34,7 +35,7 @@ public class Main extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
-		init();
+		initGUI();
 
 		class Listener implements ActionListener{
 			@Override
@@ -43,16 +44,14 @@ public class Main extends JFrame {
 				if(e.getSource().equals(btEncrypt)) {
 					new Encryptor();
 				}
-				else if(e.getSource().equals(btDecrypt)) {
-					/**
-					 * 파일 불러오기
-					 */
+				else if(e.getSource() == btDecrypt) {
+				
 				}
 			}
 		}
 	}
 
-	public void init() {
+	public void initGUI() {
 		btEncrypt = new JButton("Encrypt");
 		btEncrypt.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 20));
 		btEncrypt.setBounds(120, 70, 180, 30);
@@ -61,14 +60,14 @@ public class Main extends JFrame {
 		btDecrypt = new JButton("Decrypt");
 		btDecrypt.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser fs = new JFileChooser(new File("C:\\"));
-				fs.setDialogTitle("File Load");
-				int result = fs.showOpenDialog(null);
+				fc = new JFileChooser(new File("C:\\"));
+				fc.setDialogTitle("File Load");
+				int result = fc.showOpenDialog(null);
 				if(result == JFileChooser.APPROVE_OPTION) {
-					File file = fs.getSelectedFile();
+					File file = fc.getSelectedFile();
 					try {
 						BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
-
+						
 						//파일을 로드하면 Decryptor의 tf에 뜨게끔 수정
 					}catch(Exception e1) {
 						JOptionPane.showMessageDialog(null, e1.getMessage());;
