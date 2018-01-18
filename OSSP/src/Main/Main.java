@@ -24,7 +24,7 @@ public class Main extends JFrame {
 
 	private JPanel contentPane;
 	private JButton btEncrypt, btDecrypt;
-	private JFileChooser fc;
+
 	//프레임 생성
 	public Main() {
 		this.setTitle("Secret Memo");
@@ -42,10 +42,10 @@ public class Main extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if(e.getSource().equals(btEncrypt)) {
-					new Encryptor();
+					//Encrypt로 이동
 				}
 				else if(e.getSource() == btDecrypt) {
-				
+					//Decrypt로 이동
 				}
 			}
 		}
@@ -58,23 +58,6 @@ public class Main extends JFrame {
 		contentPane.add(btEncrypt);
 
 		btDecrypt = new JButton("Decrypt");
-		btDecrypt.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				fc = new JFileChooser(new File("C:\\"));
-				fc.setDialogTitle("File Load");
-				int result = fc.showOpenDialog(null);
-				if(result == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					try {
-						BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
-						
-						//파일을 로드하면 Decryptor의 tf에 뜨게끔 수정
-					}catch(Exception e1) {
-						JOptionPane.showMessageDialog(null, e1.getMessage());;
-					}
-				}
-			}
-		});
 		btDecrypt.setFont(new Font("나눔고딕 ExtraBold", Font.PLAIN, 20));
 		btDecrypt.setBounds(118, 141, 182, 27);
 		contentPane.add(btDecrypt);

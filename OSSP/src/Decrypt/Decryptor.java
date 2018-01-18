@@ -7,6 +7,14 @@ import javax.crypto.Cipher;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /*
 Copyright 2018 LeeSeeun 
@@ -29,6 +37,9 @@ public class Decryptor extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tf;
+	private JButton keyId;
+	private JTextField textField;
+	private JFileChooser fc;
 	/**
 	 * Create the frame.
 	 */
@@ -41,9 +52,53 @@ public class Decryptor extends JFrame {
 		contentPane.setLayout(null);
 		
 		tf = new JTextField();
-		tf.setBounds(59, 53, 556, 469);
+		tf.setBounds(60, 120, 555, 400);
 		contentPane.add(tf);
 		tf.setColumns(10);
+		
+		JButton button = new JButton("ºÒ·¯¿À±â");
+		button.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 15));
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+					fc = new JFileChooser(new File("C:\\"));
+					fc.setDialogTitle("File Load");
+					int result = fc.showOpenDialog(null);
+					if(result == JFileChooser.APPROVE_OPTION) {
+						File file = fc.getSelectedFile();
+						try {
+							BufferedReader br = new BufferedReader(new FileReader(file.getPath()));
+							String l = "";
+							String data = "";
+							while((l = br.readLine()) != null)
+							{
+								data += l + "\n";
+							}
+							tf.setText(data);
+							if (br != null)
+								br.close();
+						}catch(Exception e1) {
+							JOptionPane.showMessageDialog(null, e1.getMessage());;
+						}
+					}
+				}
+		});
+		button.setBounds(510, 58, 105, 27);
+		contentPane.add(button);
+		
+		JLabel label = new JLabel("DECRYPTOR");
+		label.setFont(new Font("³ª´®¹Ù¸¥°íµñ", Font.BOLD, 17));
+		label.setBounds(60, 15, 150, 18);
+		contentPane.add(label);
+		
+		keyId = new JButton("Å° È®ÀÎ");
+		keyId.setFont(new Font("³ª´®½ºÄù¾î", Font.PLAIN, 15));
+		keyId.setBounds(386, 58, 105, 27);
+		contentPane.add(keyId);
+		
+		textField = new JTextField();
+		textField.setBounds(60, 59, 296, 24);
+		contentPane.add(textField);
+		textField.setColumns(10);
 	}
 
 	/**

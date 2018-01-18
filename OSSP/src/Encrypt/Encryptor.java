@@ -2,6 +2,7 @@ package Encrypt;
 
 import java.awt.BorderLayout;
 import java.io.*;
+import java.nio.file.spi.FileTypeDetector;
 import java.security.Key;
 
 import javax.crypto.Cipher;
@@ -101,13 +102,13 @@ public class Encryptor extends JFrame {
 
 		tfPlainText = new JTextField();
 		tfPlainText.setFont(new Font("나눔바른고딕", Font.PLAIN, 15));
-		tfPlainText.setBounds(59, 125, 556, 397);
+		tfPlainText.setBounds(60, 120, 555, 400);
 		contentPane.add(tfPlainText);
 		tfPlainText.setColumns(10);
 
 		lbEncryptor = new JLabel("ENCRYPTOR");
 		lbEncryptor.setFont(new Font("나눔바른고딕", Font.BOLD, 17));
-		lbEncryptor.setBounds(59, 10, 150, 18);
+		lbEncryptor.setBounds(60, 15, 150, 20);
 		contentPane.add(lbEncryptor);
 
 		//Encrypt 버튼 클릭시 파일 저장
